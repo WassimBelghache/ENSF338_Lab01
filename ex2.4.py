@@ -35,5 +35,5 @@ if __name__ == "__main__":
         total_time = timeit.timeit(number=100)
 
         average_time = total_time / 100
-        print(f'average time across 10 repetitions: {average_time:.6f} seconds')
+        print(f'average time across 100 repetitions: {average_time:.6f} seconds')
         print(f"The average number of vowels per word in the text file is: {average_vowels}")
