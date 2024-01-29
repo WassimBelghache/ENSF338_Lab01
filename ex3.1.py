@@ -1,37 +1,44 @@
 import json
 import matplotlib.pyplot as plt
-import numpy as np
 
-spotify = open('songdata.json').read()
-spotify = json.loads(spotify)
+file_path = 'internetdata.json'
 
-below = []
-above = []
-for i in range(len(spotify)):
-    if(spotify[i]["loudness"] < -8):
-        below.append(spotify[i]) 
-    elif(spotify[i]["loudness"] > -8):
-        above.append(spotify[i])
-# below
-dataB = []
-for i in range(len(below)):
-    dataB.append(below[i]["tempo"])
-arrB = np.array(dataB)
+low_income_countries = []
+high_income_countries = []
 
-# above
-dataA = []
-for i in range(len(above)):
-    dataA.append(above[i]["tempo"])
-arrA = np.array(dataA)
+try:
+    with open(file_path, 'r') as file:
+        data = json.load(file)
 
-plt.hist(arrA, color='red', edgecolor='white')
-plt.xlabel('tempo')
-plt.ylabel('Frequency')
-plt.title('Tempo of Songs Above Loudness -8')
-plt.savefig("hist1.png") 
-plt.clf()
-plt.hist(arrB, color='red', edgecolor='white')
-plt.xlabel('tempo')
-plt.ylabel('Frequency')
-plt.title('Tempo of Songs Below Loudness -8') 
-plt.savefig("hist2.png")
+    for d in data:
+        income = d.get('incomeperperson')
+        internet_rate = d.get('internetuserate')
+
+        if income is not None and internet_rate is not None:
+            if income < 10000:
+                low_income_countries.append(internet_rate)
+            elif income >= 10000:
+                high_income_countries.append(internet_rate)
+
+    if low_income_countries:
+        plt.figure(figsize=(10,6))
+        plt.hist(low_income_countries, bins=20, color='blue', alpha=0.7)
+        plt.title('Internet Usage in Low-Income Countries')
+        plt.xlabel('Internet Usage Rate')
+        plt.ylabel('Number of Countries')
+        plt.savefig('hist1.png')
+
+    if high_income_countries:
+        plt.figure(figsize=(10,6))
+        plt.hist(high_income_countries, bins=20, color='green', alpha=0.7)
+        plt.title('Internet Usage in High-Income Countries')
+        plt.xlabel('Internet Usage Rate')
+        plt.ylabel('Number of Countries')
+        plt.savefig('hist2.png')
+
+except FileNotFoundError:
+    print(f'File not found: {file_path}')
+except json.JSONDecodeError:
+    print(f'Error deconding JSON from the file: {file_path}')
+except Exception as e:
+    print(f'An error occured: {e}')
