@@ -18,8 +18,8 @@ def process_large_file():
 
     for size in record_sizes:
         subset_data = data[:size]
-        total_time = timeit.timeit(lambda: modify_size(subset_data), number=10)
-        average_time = total_time / 10
+        total_time = timeit.timeit(lambda: modify_size(subset_data), number=100)
+        average_time = total_time / 100
         average_times.append(average_time)
         print(f'Average time for {size} records: {average_time:.6f} seconds')
 
