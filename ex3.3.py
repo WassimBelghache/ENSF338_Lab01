@@ -16,10 +16,8 @@ def process_large_file():
     record_size = 1000
     subset_data = data[:record_size]
 
-    # Using timeit's repeat function to time the processing of the first 1000 records 1000 times
     timings = timeit.repeat(lambda: modify_size(subset_data), repeat=1000, number=1)
 
-    # Create a histogram
     plt.hist(timings, bins=20, edgecolor='black')
     plt.xlabel('Time (seconds)')
     plt.ylabel('Frequency')
