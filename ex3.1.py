@@ -22,7 +22,7 @@ try:
 
     if low_income_countries:
         plt.figure(figsize=(10,6))
-        plt.hist(low_income_countries, bins=20, color='blue', alpha=0.7)
+        plt.hist(low_income_countries, bins=20, color='blue', alpha=0.7, border = 'white')
         plt.title('Internet Usage in Low-Income Countries')
         plt.xlabel('Internet Usage Rate')
         plt.ylabel('Number of Countries')
@@ -30,7 +30,7 @@ try:
 
     if high_income_countries:
         plt.figure(figsize=(10,6))
-        plt.hist(high_income_countries, bins=20, color='green', alpha=0.7)
+        plt.hist(high_income_countries, bins=20, color='green', alpha=0.7, border = 'white')
         plt.title('Internet Usage in High-Income Countries')
         plt.xlabel('Internet Usage Rate')
         plt.ylabel('Number of Countries')
