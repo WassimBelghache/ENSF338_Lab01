@@ -38,7 +38,7 @@ def generate_regression_plot(record_sizes, average_times):
     polynomial = np.poly1d(coefficients)
     
     plt.plot(record_sizes, average_times, 'o', label='Average Time')
-    plt.plot(record_sizes, polynomial(record_sizes), label='Linear Regression')
+    plt.plot(record_sizes, polynomial(record_sizes), label='Linear Regression', color = 'red')
     plt.xlabel('Number of Records')
     plt.ylabel('Average Processing Time (seconds)')
     plt.title('Processing Time vs Number of Records')
