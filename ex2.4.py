@@ -32,4 +32,8 @@ if __name__ == "__main__":
     average_vowels = average_vowels_per_word(file_name)
 
     if average_vowels is not None:
+        total_time = timeit.timeit(number=100)
+
+        average_time = total_time / 100
+        print(f'average time across 10 repetitions: {average_time:.6f} seconds')
         print(f"The average number of vowels per word in the text file is: {average_vowels}")
