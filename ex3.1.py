@@ -35,5 +35,3 @@ plt.xlabel('tempo')
 plt.ylabel('Frequency')
 plt.title('Tempo of Songs Below Loudness -8') 
 plt.savefig("hist2.png")
-
-
