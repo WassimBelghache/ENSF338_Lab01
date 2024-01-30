@@ -9,7 +9,7 @@ def average_vowels_per_word(file_name, start_at='CHAPTER 1. Loomings.'):
     total_vowels = 0
 
 
-    with open(file_name, 'r') as text:
+    with open(file_name, 'r', encoding='utf-8') as text:
 
         for line in text: 
                 if start_at in line:
