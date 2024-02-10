@@ -65,6 +65,3 @@ plt.title("Comparison of Bubble and Quick sort worst cases")
 plt.legend(["Bubble","Quick"])
 plt.savefig("ex2.worstCases.png")
 plt.clf()
-#question 4:
-#looking at the plots, in all but the best cases it appears that quick sort becomes faster
-#than bubble sort around 10 elements, so a small sort would have 9 or less elements 
