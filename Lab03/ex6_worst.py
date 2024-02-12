@@ -33,11 +33,10 @@ def quicksort(arr):
 def measure_performance(search_func, input_size):
     total_time = 0
     for _ in range(100):
-        arr = random.sample(range(1, 10001), input_size)
-        target = random.randint(1, 10000)
-        sorted_arr = quicksort(arr)
+        arr = list(range(1, input_size + 1))  # Generate a sorted array
+        target = random.randint(1, input_size)
         start_time = time.time()
-        search_func(sorted_arr, target)
+        search_func(arr, target)
         end_time = time.time()
         total_time += end_time - start_time
     return total_time / 100
@@ -54,13 +53,12 @@ for size in input_sizes:
     print(f"Input size: {size}, Linear search time: {linear_time}, Binary search time: {binary_time}")
 
 plt.plot(input_sizes, linear_search_times, label='Linear Search')
-plt.plot(input_sizes, binary_search_times, label='Binary Search with Quicksort')
+plt.plot(input_sizes, binary_search_times, label='Binary Search with Quicksort (Worst-case)')
 plt.xlabel('Input Size')
 plt.ylabel('Average Execution Time (seconds)')
-plt.title('Performance Comparison: Linear Search vs Binary Search with Quicksort')
+plt.title('Performance Comparison: Linear Search vs Binary Search with Quicksort (Worst-case)')
 plt.legend()
 plt.show()
 
 # question 4 ans:
-# for the average case, Binary and Linear search are approximately the same up until the input size is 200.
-# Once the input size becomes 500, then Binary search is shown to be faster. Overall, Binary search is a lot faster, especially when you look at the graph.
+# similarly to the average case, in worst case binary search is shown to be quicker than Linear search, both in the outputed time data and the graph.
