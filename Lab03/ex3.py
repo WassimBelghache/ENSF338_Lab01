@@ -1,5 +1,6 @@
-from matplotlib import pyplot as plt
 
+import random
+from matplotlib import pyplot as plt
 def bubbleSort(a,len):
     swaps = 0
     comparisons = 0
@@ -36,7 +37,7 @@ for x in choices:
 plt.scatter(choices,finalComparisons)
 plt.xlabel("Input size")
 plt.ylabel("Number of Comparisons")
-plt.title("Comparisons vs Input Size")
+plt.title("Comparisons vs Input")
 plt.savefig("ex3.comparisonsInputSize.png")
 plt.clf()
 
