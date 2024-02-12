@@ -3,56 +3,56 @@ import json
 import random
 from matplotlib import pyplot as plt
 
-def binary_search(arr, key, midpoint=None):
-   low = 0
-   high = len(arr) - 1
-   if midpoint is None:
-
-      mid = (low + high) // 2
+def binary_search(arr, target, initial_midpoint=None):
+   left = 0
+   right = len(arr) - 1
+   if initial_midpoint is None:
+      midpoint = (left + right) // 2
    else:
-      mid = midpoint
+      midpoint = initial_midpoint
 
-   while low <= high:
-      if arr[mid] == key:
-         return mid
-      elif arr[mid] < key:
-         low = mid + 1
+   while left <= right:
+      if arr[midpoint] == target:
+         return midpoint
+      elif arr[midpoint] < target:
+         left = midpoint + 1
       else:
-         high = mid -1
-      mid = (low + high) // 2
+         right = midpoint - 1
+      midpoint = (left + right) // 2
    return -1
    
-# import json files
-with open('ex7data.json', 'r') as d:
-   data = json.load(d)
+# Import JSON files
+with open('ex7data.json', 'r') as data_file:
+   data = json.load(data_file)
 
-with open('ex7tasks.json', 'r') as t:
-   tasks = json.load(t)
+with open('ex7tasks.json', 'r') as tasks_file:
+   tasks = json.load(tasks_file)
 
 best_midpoints = {}
 
 for task in tasks:
-   random_midpoints = [random.randint(0, len(data) - 1) for i in range(100)]
+   random_midpoints = [random.randint(0, len(data) - 1) for _ in range(100)]
    results = []
 
    for random_midpoint in random_midpoints:
       time_taken = timeit.timeit(lambda: binary_search(data, task, random_midpoint), number=100)
-      avg_time = time_taken/100
+      avg_time = time_taken / 100
       results.append((random_midpoint, avg_time))
 
-   # find best midpoint with one with smallest avg time
+   # Find best midpoint with smallest average time
    best_midpoint, fastest = min(results, key=lambda x: x[1])
    best_midpoints[task] = best_midpoint
 
-# produce scatter plot with results
+# Produce scatter plot with results
 tasks_sorted, best_midpoints_sorted = zip(*sorted(best_midpoints.items()))
 
 plt.figure(figsize=(10, 6))
 plt.scatter(tasks_sorted, best_midpoints_sorted)
-plt.xlabel("tasks")
-plt.ylabel("best midpoint")
+plt.xlabel("Tasks")
+plt.ylabel("Best Midpoint")
 plt.grid(True)
 plt.show()
+
 
 ''' Q4. Based on the graph analysis, it appears that the proximity of the midpoint to the target value 
 influences the speed of the search process. The graph suggests a linear trend, indicating that the most 

@@ -1,79 +1,53 @@
-import matplotlib.pyplot as plt
-from random import randint
+#question 1:
+#number of comparisons is = n(n-1)/2 in the average case
+#for average case number of swaps we'll say that every second comparison is a swap, therefore the equation = n(n-1)/4
+import random
+from matplotlib import pyplot as plt
 
+def bubbleSort(a,len):
+    swaps = 0
+    comparisons = 0
+    for y in range(len-1):
+        swap = False
+        for x in range (len-1-y):
+            comparisons = comparisons + 1 
+            if a[x] > a[x+1]:
+                swap = True
+                swaps = swaps+1
+                (a[x],a[x+1]) = (a[x+1],a[x])
+        if swap == False:
+            break
+    return[swaps,comparisons]
 
-#Bubble sort that counts comparisons and swaps
-def bubble_sort(arr):
-	n = len(arr)
-	
-	for i in range(n):
-		global swaps
-		global comparisons
-		for j in range(0, n-i-1):
-			comparisons += 1
-			if arr[j] > arr[j+1]:
-				temp = arr[j]
-				arr[j] = arr[j+1]
-				arr[j+1] = temp
-				swaps += 1
-	return arr
+choices = range(100, 1001, 100)
+finalSwaps = []
+finalComparisons = []
+for x in choices:
+    swaps = 0
+    comparisons = 0
+    for y in range(100):
+        test = random.sample(range(0,1000),x)
+        result1,result2 = bubbleSort(test,x)
+        swaps = swaps + result1
+        comparisons = comparisons + result2
+    swaps = swaps/100
+    comparisons = comparisons/100
+    finalSwaps.append(swaps)
+    finalComparisons.append(comparisons)
+    
 
-nums = [1000, 2000, 4000, 8000, 16000, 32000]
-comp = []
-swap = []
-
-arr1000 = [randint(1, 1000) for i in range(1000)]
-
-arr2000 = [randint(1, 2000) for i in range(2000)]
-
-arr4000 = [randint(1, 4000) for i in range(4000)]
-
-arr8000 = [randint(1, 8000) for i in range(8000)]
-
-swaps = 0
-comparisons = 0
-
-bubble_sort(arr1000)
-
-comp.append(comparisons)
-swap.append(swaps)
-
-comparisons = 0
-swaps = 0
-
-bubble_sort(arr2000)
-
-comp.append(comparisons)
-swap.append(swaps)
-
-comparisons = 0
-swaps = 0
-
-bubble_sort(arr4000)
-
-comp.append(comparisons)
-swap.append(swaps)
-
-comparisons = 0
-swaps = 0
-
-bubble_sort(arr8000)
-
-comp.append(comparisons)
-swap.append(swaps)
-
-comparisons = 0
-swaps = 0
-
-plt.scatter(nums,comp)
-plt.xlabel("Number of Elements")
+	#ChatGPT useed to help plot
+plt.scatter(choices,finalComparisons)
+plt.xlabel("Input size")
 plt.ylabel("Number of Comparisons")
-plt.title("Comparisons vs Elements")
-plt.savefig("ex3.comparisonsVsElements.png")
+plt.title("Comparisons vs Input Size")
+plt.savefig("ex3.comparisonsInputSize.png")
 plt.clf()
-plt.scatter(nums,swap)
-plt.xlabel("Number of Elements")
+
+plt.scatter(choices,finalSwaps)
+plt.xlabel("Input size")
 plt.ylabel("Number of Swaps")
-plt.title("Swaps vs Elements")
-plt.savefig("ex3.swapsVsElements.png")
+plt.title("Swaps vs Input Size")
+plt.savefig("ex3.swapsInputsize.png")
 plt.clf()
+        
