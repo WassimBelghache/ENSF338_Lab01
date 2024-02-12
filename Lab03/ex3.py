@@ -1,7 +1,3 @@
-#question 1:
-#number of comparisons is = n(n-1)/2 in the average case
-#for average case number of swaps we'll say that every second comparison is a swap, therefore the equation = n(n-1)/4
-import random
 from matplotlib import pyplot as plt
 
 def bubbleSort(a,len):
