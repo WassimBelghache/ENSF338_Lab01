@@ -65,14 +65,15 @@ swap.append(swaps)
 comparisons = 0
 swaps = 0
 
-
-plt.plot(nums, comp, label='Comparisons')
-plt.plot(nums, swap, label='Swaps')
-
-plt.xlabel('Array Size')
-plt.ylabel('Count')
-plt.title('Bubble Sort Performance')
-
-plt.legend()
-
-plt.show()
+plt.scatter(nums,comp)
+plt.xlabel("Number of Elements")
+plt.ylabel("Number of Comparisons")
+plt.title("Comparisons vs Elements")
+plt.savefig("ex3.comparisonsVsElements.png")
+plt.clf()
+plt.scatter(nums,swap)
+plt.xlabel("Number of Elements")
+plt.ylabel("Number of Swaps")
+plt.title("Swaps vs Elements")
+plt.savefig("ex3.swapsVsElements.png")
+plt.clf()
